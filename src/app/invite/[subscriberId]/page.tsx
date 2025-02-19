@@ -1,11 +1,19 @@
 import Image from 'next/image'
-import logo from '../../assets/logo.svg'
+import logo from '../../../assets/logo.svg'
 import { Ranking } from './ranking'
 import { Stats } from './stats'
 import { InviteLinkInput } from './invite-link-input'
 
-export default function InvitePage() {
-    const inviteLink = 'https://devstage.com.br/invite/123456789'
+interface InvitePageProps {
+    params: Promise<{
+        subscriberId: string
+    }>
+}
+
+export default async function InvitePage(props: InvitePageProps) {
+    const { subscriberId } = await props.params
+    const inviteLink = `https://devstage.onrender.com/invites/${subscriberId}`
+    // const inviteLink = `https://devstage-xi.vercel.app/invites/${subscriberId}`
 
     return (
         <div className="min-h-dvh flex items-center justify-between gap-16 flex-col md:flex-row">
@@ -13,7 +21,7 @@ export default function InvitePage() {
                 <Image src={logo} alt="devstage" width={108.5} height={30} />
                 <div className='space-y-2'>
                     <h1 className='text-4xl font-semibold font-heading text-gray-100 leading-none'>
-                        Inscrição confirmada
+                        Inscrição confirmada!
                     </h1>
                     <p className='text-gray-300'>
                         Para entrar no evento, acesse o link enviado para seu e-mail.
@@ -29,7 +37,7 @@ export default function InvitePage() {
                         </p>
                     </div>
                     <InviteLinkInput inviteLink={inviteLink} />
-                    <Stats />
+                    <Stats subscriberId={subscriberId} />
                 </div>
             </div>
             <Ranking />
