@@ -2,6 +2,7 @@ import Image from 'next/image'
 import logo from '../../assets/logo.svg'
 import { Radio } from 'lucide-react'
 import { SubscriptionForms } from './subscription-forms'
+import { Suspense } from 'react'
 
 export default function Home() {
     return (
@@ -30,7 +31,9 @@ export default function Home() {
                         Dias 15 a 17 de março | Das 18h às 21h | Online & Gratuito
                     </p>
                 </div>
-                <SubscriptionForms />
+                <Suspense>
+                    <SubscriptionForms />
+                </Suspense>
             </div>
         </div>
     )
