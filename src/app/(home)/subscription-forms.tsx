@@ -45,12 +45,13 @@ export function SubscriptionForms() {
                         </InputIcon>
                         <InputField
                             type='text'
+                            id='name'
                             placeholder='Nome completo'
                             {...register('name')}
                         />
                     </InputRoot>
                     {errors.name && (
-                        <p className='text-danger text-xs font-semibold'>
+                        <p className='text-danger text-xs font-semibold' id='name-error'>
                             {errors.name.message}
                         </p>
                     )}
@@ -62,18 +63,19 @@ export function SubscriptionForms() {
                         </InputIcon>
                         <InputField
                             type='email'
+                            id='email'
                             placeholder='E-mail'
                             {...register('email')}
                         />
                     </InputRoot>
                     {errors.email && (
-                        <p className='text-danger text-xs font-semibold'>
+                        <p className='text-danger text-xs font-semibold' id='email-error'>
                             {errors.email.message}
                         </p>
                     )}
                 </div>
             </div>
-            <Button type='submit'>
+            <Button type='submit' id='subscribe'>
                 Confirmar
                 <ArrowRight />
             </Button>
